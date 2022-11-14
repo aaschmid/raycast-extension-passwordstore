@@ -1,0 +1,75 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "passwordstore",
+  "title": "Passwordstore Extension",
+  "description": "Extension for the standard unix password manager `pass`.",
+  "icon": "icon.png",
+  "author": "aaschmid",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "index",
+      "title": "Passwordstore",
+      "description": "Show a list of all stored passwords.",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "passwordStoreDir",
+      "description": "Directory of local password store where repo is stored (= `PASSWORD_STORE_DIR`).",
+      "type": "textfield",
+      "required": true,
+      "title": "Password store directory",
+      "placeholder": "PASSWORD_STORE_DIR"
+    },
+    {
+      "name": "pathExtensions",
+      "type": "textfield",
+      "required": false,
+      "title": "Path extensions",
+      "description": "Path extensions as colon separated list to search for executables like `gpg` and `pass`, e.g. '/opt/bin:/opt/local/bin'. Defaults to `/bin:/usr/bin`.",
+      "placeholder": "e.g. `/opt/bin:/opt/local/bin`",
+      "default": ""
+    },
+    {
+      "name": "primaryAction",
+      "type": "dropdown",
+      "required": false,
+      "title": "Primary action",
+      "description": "Primary action to use",
+      "default": "paste",
+      "data": [
+        {
+          "title": "Paste to Active App",
+          "value": "paste"
+        },
+        {
+          "title": "Copy to Clipboard",
+          "value": "copy"
+        }
+      ]
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "1.43.2"
+  },
+  "devDependencies": {
+    "@types/node": "~16.18.3",
+    "@types/react": "^18.0.25",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.7.1",
+    "react-devtools": "^4.26.1",
+    "typescript": "^4.8.4"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "lint": "ray lint"
+  }
+}
