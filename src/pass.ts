@@ -22,15 +22,6 @@ export const clip = async (entry: string): Promise<void> => {
 
 export const password = async (entry: string): Promise<string> => pass(["show", entry]).then((data) => data.split("\n")[0]);
 
-// TODO not required! but maybe create a show action?
-export const show = async (entry: string): Promise<string[]> => {
-  // pass has no option to disable printing the password in the first, therefor we use `slice`
-  return await pass(["show", entry])
-    .then((data) => data.split(`\n`).slice(1))
-    // Filter out details not in YAML colon syntax "key: value", such as PASS-SECRET-1.0
-    .then((data) => data.filter((item) => item.includes(":")));
-};
-
 const pass = (args: string[]): Promise<string> =>
   new Promise((resolve, reject) => {
     const cli = spawn("pass", args, {

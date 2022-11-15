@@ -9,7 +9,7 @@ export async function loadAllPasswords(): Promise<string[]> {
 
 export async function copyPassword(entry: string): Promise<void> {
   try {
-    const toast = await showToast({ title: "Copying password", style: Toast.Style.Animated });
+    const toast = await showToast({ title: "Copying password...", style: Toast.Style.Animated });
     await pass.clip(entry);
     await toast.hide();
     await closeMainWindow();
@@ -21,9 +21,21 @@ export async function copyPassword(entry: string): Promise<void> {
 }
 
 export async function pastePassword(entry: string): Promise<void> {
+  let password = undefined;
   try {
-    const toast = await showToast({ title: "Pasting password", style: Toast.Style.Animated });
-    const password = await pass.password(entry);
+    const toast = await showToast({ title: "Checking if gpg key is unlocked...", style: Toast.Style.Animated });
+    password = await pass.password(entry);
+    await toast.hide();
+  } catch (error) {
+    console.error(error);
+    await showToast({ title: "Could not unlock gpg key", style: Toast.Style.Failure });
+  }
+
+  try {
+    const toast = await showToast({ title: "Pasting password...", style: Toast.Style.Animated });
+    if (password === undefined) {
+      password = await pass.password(entry);
+    }
     await Clipboard.paste(password);
     await toast.hide();
     await closeMainWindow();
