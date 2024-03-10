@@ -74,7 +74,7 @@ export default (): ReactElement<unknown> => {
               </ActionPanel.Section>
             </ActionPanel>
           }
-          icon={Icon.Paperclip}
+          icon={Icon.Key}
           subtitle="*****"
           title={entry}
         />

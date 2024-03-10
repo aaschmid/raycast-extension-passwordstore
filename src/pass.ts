@@ -1,6 +1,7 @@
 import { spawn } from "child_process";
 import { passwordStoreDir, pathExtensions } from "./preferences";
 import { walkDirectory } from "./utils";
+import fs from "fs";
 
 export const list = async (prefix = undefined): Promise<string[]> => {
   const results: string[] = [];
