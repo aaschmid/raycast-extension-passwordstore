@@ -1,5 +1,5 @@
 import { FunctionComponent, ReactElement, useCallback, useEffect, useState } from "react";
-import { Action, ActionPanel, Icon, List } from "@raycast/api";
+import { Action, ActionPanel, Icon, List, showToast, Toast } from "@raycast/api";
 import { copyPassword, loadAllPasswords, pastePassword } from "./utils";
 import { primaryAction } from "./preferences";
 
@@ -22,8 +22,13 @@ export default (): ReactElement<unknown> => {
 
   useEffect(() => {
     (async () => {
-      const entries = await loadAllPasswords();
-      setState((s) => ({ ...s, entries, isLoading: false }));
+      try {
+        const entries = await loadAllPasswords();
+        setState((s) => ({ ...s, entries, isLoading: false }));
+      } catch (error) {
+        setState((s) => ({ ...s, isLoading: false }));
+        await showToast({ title: "Loading passwords failed: " + error, style: Toast.Style.Failure });
+      }
     })();
   }, []);
 
