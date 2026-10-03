@@ -1,7 +1,6 @@
 import { spawn } from "child_process";
-import { passwordStoreDir, pathExtensions } from "./preferences";
+import { passwordStoreDir, pathToPass } from "./preferences";
 import { walkDirectory } from "./utils";
-import fs from "fs";
 
 export const list = async (prefix = undefined): Promise<string[]> => {
   const results: string[] = [];
@@ -25,10 +24,9 @@ export const password = async (entry: string): Promise<string> => pass(["show", 
 
 const pass = (args: string[]): Promise<string> =>
   new Promise((resolve, reject) => {
-    const cli = spawn("pass", args, {
+    const cli = spawn(pathToPass || "pass", args, {
       env: {
         PASSWORD_STORE_DIR: passwordStoreDir,
-        PATH: ["/bin", "/usr/bin", pathExtensions].filter((p) => p.length > 0).join(":"),
       },
     });
 

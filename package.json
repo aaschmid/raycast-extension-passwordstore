@@ -17,19 +17,19 @@
   "preferences": [
     {
       "name": "passwordStoreDir",
-      "description": "Directory of local password store where repo is stored (= `PASSWORD_STORE_DIR`).",
+      "description": "Directory of local password store where repo is stored (= `PASSWORD_STORE_DIR`) without leading slash.",
       "type": "textfield",
       "required": true,
       "title": "Password store directory",
       "placeholder": "PASSWORD_STORE_DIR"
     },
     {
-      "name": "pathExtensions",
+      "name": "pathToPass",
       "type": "textfield",
       "required": false,
-      "title": "Path extensions",
-      "description": "Path extensions as colon separated list to search for executables like `gpg` and `pass`, e.g. '/opt/bin:/opt/local/bin'. Defaults to `/bin:/usr/bin`.",
-      "placeholder": "e.g. `/opt/bin:/opt/local/bin`",
+      "title": "Path to pass",
+      "description": "Absolute path to the `pass` binary. Defaults to `pass` resolved via PATH.",
+      "placeholder": "e.g. `/bin/pass`",
       "default": ""
     },
     {

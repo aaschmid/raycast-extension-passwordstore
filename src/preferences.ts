@@ -1,8 +1,7 @@
 import { getPreferenceValues } from "@raycast/api";
 
-// TODO: pathExtensions -> path?
-export const { passwordStoreDir, pathExtensions, primaryAction } = getPreferenceValues<{
+export const { passwordStoreDir, pathToPass, primaryAction } = getPreferenceValues<{
   passwordStoreDir: string;
-  pathExtensions: string;
+  pathToPass: string;
   primaryAction: "copy" | "paste";
 }>();
