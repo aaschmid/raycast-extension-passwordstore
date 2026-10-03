@@ -16,7 +16,7 @@ export async function copyPassword(entry: string): Promise<void> {
     await showHUD("Password copied");
   } catch (error) {
     console.error(error);
-    await showToast({ title: "Could not copy password, see logs for details", style: Toast.Style.Failure });
+    await showToast({ title: "Copy failed: " + error, style: Toast.Style.Failure });
   }
 }
 
@@ -29,7 +29,7 @@ export async function pastePassword(entry: string): Promise<void> {
     await toast.hide();
   } catch (error) {
     console.error(error);
-    await showToast({ title: "Could not paste password, see logs for details", style: Toast.Style.Failure });
+    await showToast({ title: "Paste failed: " + error, style: Toast.Style.Failure });
   }
 }
 
