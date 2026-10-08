@@ -17,3 +17,9 @@ For each entry choose between two actions (order configurable via the `Primary a
 
 - Only the first line of an entry is used as the password; remaining lines (notes, usernames, URLs) are ignored.
 - Pasting needs the host app (Raycast or Tinycast) to be allowed to simulate keystrokes (accessibility permissions).
+
+## Tinycast setup
+
+One Tinycast setting is required for the pinentry flow: **Set Pop to Root Search to "After 15 seconds" (or later)** instead of the default "Immediately".
+
+Without it, the passphrase dialog steals keyboard focus, the palette immediately pops back to the launcher, and that tears down the running extension — including the in-flight `pass` decryption, so the paste never happens (a second attempt then works because the key is already unlocked). With a non-immediate timeout, the palette stays alive through the passphrase and the paste succeeds on the first try.
