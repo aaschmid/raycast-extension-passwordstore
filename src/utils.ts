@@ -24,7 +24,6 @@ export async function pastePassword(entry: string): Promise<void> {
   try {
     const toast = await showToast({ title: "Pasting password...", style: Toast.Style.Animated });
     const password = await pass.password(entry);
-    await closeMainWindow();
     await Clipboard.paste(password);
     await toast.hide();
   } catch (error) {
